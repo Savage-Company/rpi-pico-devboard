@@ -15,6 +15,8 @@ Compatible with all Pico variants
    - Pico-H
    - Pico-W
 
+Schematic and PCB Layout available at [OSHWLab](https://oshwlab.com/tim.savage/pipico-devboard). 
+
 ![Debugging](assets/images/devboard-debugging.jpg)
 
 ## Getting Started
