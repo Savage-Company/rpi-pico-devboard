@@ -15,6 +15,8 @@ Compatible with all Pico variants
    - Pico-H
    - Pico-W
 
+![Debugging](assets/images/devboard-debugging.jpg)
+
 ## Getting Started
 
 The PCB has a few options for how it is configured. Both the development and debug 
