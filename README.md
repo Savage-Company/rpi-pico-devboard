@@ -6,7 +6,7 @@ The RPi Pico is a great low cost powerful ARM based development platform. This d
 - A serial interface (again via picoprobe)
 - The missing reset button!
 - Breakout of all pins from the pico
-- Development board powered by either the VSys or VBus sources
+- Development target powered by either the VSys or VBus sources
 
 Compatible with all Pico variants
 
@@ -15,6 +15,7 @@ Compatible with all Pico variants
 - Pico-W
 
 For the complete build guide visit the [docs site](https://timsavage.github.io/rpi-pico-devboard/).
+Available at [OSHWLab](https://oshwlab.com/tim.savage/pipico-devboard).
 
 ![RPi Pio Dev Board](https://timsavage.github.io/rpi-pico-devboard/assets/images/devboard-debugging.jpg)
 
