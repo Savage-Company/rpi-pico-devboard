@@ -106,7 +106,7 @@ You will need:
 
 - [Pico SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html#sdk-setup) installed
 
-- A working IDE for debugging (I only have instructions for CLion)
+- A working IDE for debugging
  
    Follow the instructions for setting up PicoProbe and installing the firmware in 
    *Chapter 10. Using other Integrated Development Environments* of the 
@@ -120,10 +120,44 @@ You will need:
    [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
    user guide.
 
+If you are happy to use Visual Studio code you should now have a working development environment
+with debug support. If you prefer CLion (I do) then follow to the next section.
 
-### Configuration of Open OCD in CLion
 
-TBC
+#### Configuration of Open OCD in CLion
+
+> This section assumes you have a working build in CLion after following the
+> [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
+> user guide.
+
+The user guide skips the final step of hooking into OpenOCD via GDB in CLion allowing you 
+to hit run and debug from directly in the IDE and to set breakpoints and step through your code.
+
+1. Open the edit configs window
+
+   ![Edit configurations](assets/images/clion-edit-configs.png)
+
+2. Add an embedded GDB Server
+
+   ![Add embedded GDB Server](assets/images/clion-add-embedded-gdb.png)
+
+3. Select your target and executable and use the following settings:
+   
+   | Setting              | Value                                                    |
+   |----------------------|----------------------------------------------------------|
+   | 'target remote' args | `tcp:localhost:3333`                                     |
+   | GDB Server           | `/usr/local/bin/openocd`<sup>1</sup>                     |
+   | GDB Server args      | `-f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl` |
+
+   <sup>1</sup> Location where OpenOCD binary was installed
+    
+   ![Embedded GDB](assets/images/clion-embedded-gdb.png)
+
+4. Hit Debug and set a breakpoint!
+
+   ![Debug!](assets/images/clion-debug.png)
+
+   ![Debug!](assets/images/clion-breakpoint.png)
 
 ## Gotchas
 
@@ -138,8 +172,12 @@ Place the following into the file: `/etc/udev/rules.d/60-openocd.rules`
 ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0004", MODE="660", GROUP="plugdev", TAG+="uaccess"
 ```
 
+Reconnect the dev board to update permissions. 
+
 Next add your user to the `plugdev` group with:
 
 > Assuming your distribution uses sudo:
 > 
 > `sudo usermod -aG plugdev $USER`
+
+You will need to re-login for this change to take effect.
