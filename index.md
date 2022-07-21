@@ -1,5 +1,20 @@
 # RaspberryPi Pico Dev Board
 
+The RPi Pico is a great low cost powerful ARM based development platform. This dev
+board enhances the platform with a carrier board with:
+
+   - A debug host (using picoprobe) for on chip debugging of code
+   - A serial interface (again via picoprobe) 
+   - The missing reset button!
+   - Breakout of all pins from the pico
+   - Development board powered by either the VSys or VBus sources
+
+Compatible with all Pico variants
+
+   - Pico
+   - Pico-H
+   - Pico-W
+
 ## Getting Started
 
 The PCB has a few options for how it is configured. Both the development and debug 
@@ -20,14 +35,14 @@ Tools you are going to need
 
 General components required for all mounting approaches
 
-|                                                                                    | Part                                | Count |
-|------------------------------------------------------------------------------------|-------------------------------------|-------|
-| <img alt="Dev board" src="assets/images/dev-board.jpg" width="300"/>               | RPi Pico Devboard                   | 1     |
-| <img alg="Pico" src="assets/images/pico.jpg" width="300"/>                        | Pico (debug host)                   | 1     |
-| <img alg="20x1 Headers Male" src="assets/images/headers-m-20x1.jpg" width="300"/> | 20x1 Male Headers                   | 2     |
-| <img alg="2x2 Headers Male" src="assets/images/headers-m-2x2.jpg" width="300"/>   | 2x2 Male & 2x1 Male Headers         | 1     |
-| <img alg="Button" src="assets/images/button.jpg" width="300"/>                    | Micro pushbutton (reset)            | 1     |
-| <img alg="Jumper" src="assets/images/jumper.jpg" width="300"/>                    | Jumper (to enable VBus/Vsys & AGnd) | 1-2   |
+|                                                                                   | Part                                  | Count |
+|-----------------------------------------------------------------------------------|---------------------------------------|-------|
+| <img alt="Dev board" src="assets/images/dev-board.jpg" width="300"/>              | RPi Pico Devboard                     | 1     |
+| <img alg="Pico" src="assets/images/pico.jpg" width="300"/>                        | Pico debug host (cannot use a pico-h) | 1     |
+| <img alg="20x1 Headers Male" src="assets/images/headers-m-20x1.jpg" width="300"/> | 20x1 Male Headers                     | 2     |
+| <img alg="2x2 Headers Male" src="assets/images/headers-m-2x2.jpg" width="300"/>   | 2x2 Male & 2x1 Male Headers           | 1     |
+| <img alg="Button" src="assets/images/button.jpg" width="300"/>                    | Micro pushbutton (reset)              | 1     |
+| <img alg="Jumper" src="assets/images/jumper.jpg" width="300"/>                    | Jumper (to enable VBus/Vsys & AGnd)   | 1-2   |
 
 With the development board mounted using headers
 
@@ -46,7 +61,6 @@ These components are optional, but recommended to raise the board off the table
 |----------------------------------------------------------------------------|--------------|-------|
 | <img alt="M3 Screws" src="assets/images/m3-screws.jpg" width="300"/>       | M3 Screws    | 4     |
 | <img alt="M3 Standoffs" src="assets/images/m3-standoffs.jpg" width="300"/> | M3 Standoffs | 4     |
-
 
 #### Building the Board
 
@@ -84,3 +98,48 @@ These components are optional, but recommended to raise the board off the table
    recommended to take power straight from the USB bus.
 
    <img alt="Dev board and jumper" src="assets/images/devboard-and-jumper.jpg" width="300" />
+
+
+### Preparing the software
+
+You will need:
+
+- [Pico SDK](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html#sdk-setup) installed
+
+- A working IDE for debugging (I only have instructions for CLion)
+ 
+   Follow the instructions for setting up PicoProbe and installing the firmware in 
+   *Chapter 10. Using other Integrated Development Environments* of the 
+   [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
+   user guide.
+
+- Pico Probe and OpenOCD
+
+   Follow the instructions for setting up PicoProbe and installing the firmware in 
+   *Appendix A: Using Picoprobe* of the 
+   [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
+   user guide.
+
+
+### Configuration of Open OCD in CLion
+
+TBC
+
+## Gotchas
+
+### Open OCD unable to access Pico Probe on Linux
+
+The port used to access pico probe is r/w to root only. A UDev rule is required to
+change the ownership of the port.
+
+Place the following into the file: `/etc/udev/rules.d/60-openocd.rules`
+```
+# Raspberry Pi Picoprobe
+ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0004", MODE="660", GROUP="plugdev", TAG+="uaccess"
+```
+
+Next add your user to the `plugdev` group with:
+
+> Assuming your distribution uses sudo:
+> 
+> `sudo usermod -aG plugdev $USER`
