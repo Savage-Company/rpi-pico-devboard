@@ -10,51 +10,52 @@ the development pico mounted to the board via headers.
 
 ### Preparing the hardware
 
-**Required Tools**
+#### Required Tools
+
+Tools you are going to need
 
 - Soldering Iron
 
-**Required Components**
+#### Required Components
 
 General components required for all mounting approaches
 
-|                                                        | Part                                | Count |
-|--------------------------------------------------------|-------------------------------------|-------|
-| ![Dev board](assets/images/dev-board.jpg)              | RPi Pico Devboard                   | 1     |
-| ![Pico](assets/images/pico.jpg)                        | Pico (debug host)                   | 1     |
-| ![20x1 Headers Male](assets/images/headers-m-20x1.jpg) | 20x1 Male Headers                   | 2     |
-| ![2x2 Headers Male](assets/images/headers-m-2x2.jpg)   | 2x2 Male & 2x1 Male Headers         | 1     |
-| ![Button](assets/images/button.jpg)                    | Micro pushbutton (reset)            | 1     |
-| ![Jumper](assets/images/jumper.jpg)                    | Jumper (to enable VBus/Vsys & AGnd) | 1-2   |
+|                                                                                    | Part                                | Count |
+|------------------------------------------------------------------------------------|-------------------------------------|-------|
+| <img alt="Dev board" src="assets/images/dev-board.jpg" width="300"/>               | RPi Pico Devboard                   | 1     |
+| <img alg="Pico" src="assets/images/pico.jpg" width="300"/>                        | Pico (debug host)                   | 1     |
+| <img alg="20x1 Headers Male" src="assets/images/headers-m-20x1.jpg" width="300"/> | 20x1 Male Headers                   | 2     |
+| <img alg="2x2 Headers Male" src="assets/images/headers-m-2x2.jpg" width="300"/>   | 2x2 Male & 2x1 Male Headers         | 1     |
+| <img alg="Button" src="assets/images/button.jpg" width="300"/>                    | Micro pushbutton (reset)            | 1     |
+| <img alg="Jumper" src="assets/images/jumper.jpg" width="300"/>                    | Jumper (to enable VBus/Vsys & AGnd) | 1-2   |
 
 With the development board mounted using headers
 
-|                                                                | Part                                   | Count |
-|----------------------------------------------------------------|----------------------------------------|-------|
-| ![20x1 Headers Female](assets/images/headers-f-20x1.jpg)       | 20x1 Female Headers                    | 2     |
-| ![3x1 Headers Male & Female](assets/images/headers-mf-3x1.jpg) | 3x1 Male & Female Headers (debug port) | 1     |
+|                                                                                           | Part                                   | Count |
+|-------------------------------------------------------------------------------------------|----------------------------------------|-------|
+| <img alt="20x1 Headers Female" src="assets/images/headers-f-20x1.jpg" width="300"/>       | 20x1 Female Headers                    | 2     |
+| <img alt="3x1 Headers Male & Female" src="assets/images/headers-mf-3x1.jpg" width="300"/> | 3x1 Male & Female Headers (debug port) | 1     |
 
 If you wish to mount the debug host using headers another pair of 20x1 Female headers is required.
 
-**Optional Components**
+#### Optional Components
 
 These components are optional, but recommended to raise the board off the table
 
-|                                                 | Part         | Count |
-|-------------------------------------------------|--------------|-------|
-| ![M3 Screws](assets/images/m3-screws.jpg)       | M3 Screws    | 4     |
-| ![M3 Standoffs](assets/images/m3-standoffs.jpg) | M3 Standoffs | 4     |
+|                                                                            | Part         | Count |
+|----------------------------------------------------------------------------|--------------|-------|
+| <img alt="M3 Screws" src="assets/images/m3-screws.jpg" width="300"/>       | M3 Screws    | 4     |
+| <img alt="M3 Standoffs" src="assets/images/m3-standoffs.jpg" width="300"/> | M3 Standoffs | 4     |
 
 
-**Building the Board**
+#### Building the Board
 
-1. Solder the Pico debug host to the board.
-   ![Dev board and Pico](assets/images/dev-board-and-pico.jpg)
+1. Solder the Pico debug host to the board. First line up the pico and solder one corner, 
+   ensure the pico is still aligned and solder the opposing corner.
 
-   - To solder the Pico first line up the pico and solder one corner.
-   - Ensure the pico is still aligned and solder the opposite corner.
-   - Not all pads need to be soldered however the pads with a red should be soldered
-     ![Pads to be soldered](assets/images/pico-solder-pads.jpg)
+   All pads marked with a red dot should be soldered (the rest are optional)
+
+   ![Pads to be soldered](assets/images/pico-solder-pads.jpg)
    
    > **Tip!** The pads with squared off edges are Ground pads. As the ground plane on the back 
    > of the dev board is large it acts as heat-sink.           
@@ -62,15 +63,24 @@ These components are optional, but recommended to raise the board off the table
    > before adding solder to make this easier.
 
 2. Solder the reset button to the board.
-   ![Dev board and reset button](assets/images/devboard-and-reset.jpg)
+
+   <img alt="Dev board and reset button" src="assets/images/devboard-and-reset.jpg" width="300" />
+   
 3. Solder the male headers to the board.
-   ![Dev board and Male Headres](assets/images/devboard-and-male-headers.jpg)
+
+   <img alt="Dev board and male headers" src="assets/images/devboard-and-male-headers.jpg" width="500" />
+
 4. Solder the female headers to the board. To ensure they are aligned mount use a pico to line 
    the headers up before soldering.
    - Add headers to a pico
-     ![Pico prone!](assets/images/pico-prone.jpg)
+   
+     <img alt="Pico Prone" src="assets/images/pico-prone.jpg" width="300" />
+     
    - Solder it in place
-     ![Dev board and Dev Pico](assets/images/devboard-and-dev-pico.jpg)
+     
+     <img alt="Dev board and dev pico" src="assets/images/devboard-and-dev-pico.jpg" width="500" />
+   
 5. Add the jumper to enable VBus or VSys to power the dev pico from the debug pico. VBus is 
-   recommended to take power straight from the USB bus
-   ![Dev board and jumper](assets/images/devboard-and-jumper.jpg)
+   recommended to take power straight from the USB bus.
+
+   <img alt="Dev board and jumper" src="assets/images/devboard-and-jumper.jpg" width="300" />
