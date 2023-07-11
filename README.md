@@ -14,8 +14,8 @@ Compatible with all Pico variants
 - Pico-H
 - Pico-W
 
-For the complete build guide visit the [docs site](https://timsavage.github.io/rpi-pico-devboard/).
+For the complete build guide visit the [docs site](https://savage-company.github.io/rpi-pico-devboard/).
 Available at [OSHWLab](https://oshwlab.com/tim.savage/pipico-devboard).
 
-![RPi Pio Dev Board](https://timsavage.github.io/rpi-pico-devboard/assets/images/devboard-debugging.jpg)
+![RPi Pio Dev Board](https://savage-company.github.io/rpi-pico-devboard/assets/images/devboard-debugging.jpg)
 
