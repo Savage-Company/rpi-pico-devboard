@@ -1,10 +1,12 @@
 # RaspberryPi Pico Dev Board
 
-The RPi Pico is a great low cost powerful ARM based development platform. This dev
-board enhances the platform with a carrier board with:
+> Updated to support the new debugprobe with support for the RP2350.
 
-   - A debug host (using picoprobe) for on chip debugging of code
-   - A serial interface (again via picoprobe) 
+The RPi Pico is a great, low-cost, powerful ARM-based development platform. This dev
+board enhances the platform with a carrier board with the following:
+
+   - A debug host (using debugprobe) for on-chip debugging of code
+   - A serial interface (again via debugprobe) 
    - The missing reset button!
    - Breakout of all pins from the pico
    - Development board powered by either the VSys or VBus sources
@@ -15,17 +17,15 @@ Compatible with all Pico variants
    - Pico-H
    - Pico-W
 
-Schematic and PCB Layout available at [OSHWLab](https://oshwlab.com/tim.savage/pipico-devboard). 
+Schematic and PCB Layout are available at [OSHWLab](https://oshwlab.com/tim.savage/pipico-devboard). 
 
 ![Debugging](assets/images/devboard-debugging.jpg)
 
 ## Getting Started
 
-The PCB has a few options for how it is configured. Both the development and debug 
-host pico can be soldered directly to the board (using the castellated pads).
+The PCB has a few configuration options. The development and debug host pico can be soldered directly onto the board (using castellated pads).
 
-My personal preference is to solder the debug host pico directly to the board with
-the development pico mounted to the board via headers.
+I prefer to solder the debug host pico directly to the board with the development pico mounted to the board via headers.
 
 ### Preparing the hardware
 
@@ -48,18 +48,18 @@ General components required for all mounting approaches
 | <img alg="Button" src="assets/images/button.jpg" width="300"/>                    | Micro pushbutton (reset)              | 1     |
 | <img alg="Jumper" src="assets/images/jumper.jpg" width="300"/>                    | Jumper (to enable VBus/Vsys & AGnd)   | 1-2   |
 
-With the development board mounted using headers
+With the development board mounted using headers.
 
 |                                                                                           | Part                                   | Count |
 |-------------------------------------------------------------------------------------------|----------------------------------------|-------|
 | <img alt="20x1 Headers Female" src="assets/images/headers-f-20x1.jpg" width="300"/>       | 20x1 Female Headers                    | 2     |
 | <img alt="3x1 Headers Male & Female" src="assets/images/headers-mf-3x1.jpg" width="300"/> | 3x1 Male & Female Headers (debug port) | 1     |
 
-If you wish to mount the debug host using headers another pair of 20x1 Female headers is required.
+If you wish to mount the debug host using headers, another pair of 20x1 Female headers is required.
 
 #### Optional Components
 
-These components are optional, but recommended to raise the board off the table
+These components are optional but recommended to raise the board off the table.
 
 |                                                                            | Part         | Count |
 |----------------------------------------------------------------------------|--------------|-------|
@@ -68,16 +68,15 @@ These components are optional, but recommended to raise the board off the table
 
 #### Building the Board
 
-1. Solder the Pico debug host to the board. First line up the pico and solder one corner, 
-   ensure the pico is still aligned and solder the opposing corner.
+1. Solder the Pico debug host to the board. First, line up the Pico and solder one corner. Ensure the Pico is still aligned and solder the opposing corner.
 
    All pads marked with a red dot should be soldered (the rest are optional)
 
    ![Pads to be soldered](assets/images/pico-solder-pads.jpg)
    
-   > **Tip!** The pads with squared off edges are Ground pads. As the ground plane on the back 
-   > of the dev board is large it acts as heat-sink.           
-   > Hold your soldering iron next to the pad for a few seconds to add heat into the dev board 
+   > **Tip!** The pads with squared-off edges are Ground pads. As the ground plane on the back 
+   > of the dev board is large, it acts as a heat sink.           
+   > Hold your soldering iron next to the pad for a few seconds to add heat to the dev board 
    > before adding solder to make this easier.
 
 2. Solder the reset button to the board.
@@ -88,8 +87,7 @@ These components are optional, but recommended to raise the board off the table
 
    <img alt="Dev board and male headers" src="assets/images/devboard-and-male-headers.jpg" width="500" />
 
-4. Solder the female headers to the board. To ensure they are aligned mount use a pico to line 
-   the headers up before soldering.
+4. Solder the female headers to the board. Before soldering, use a pico to line the headers up to ensure they are aligned.
    - Add headers to a pico
    
      <img alt="Pico Prone" src="assets/images/pico-prone.jpg" width="300" />
@@ -124,8 +122,8 @@ You will need:
    [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
    user guide.
 
-If you are happy to use Visual Studio code you should now have a working development environment
-with debug support. If you prefer CLion (I do) then follow to the next section.
+If you are happy to use Visual Studio code, you should now have a working development environment
+with debug support. If you prefer CLion (I do), follow on to the next section.
 
 
 #### Configuration of Open OCD in CLion
@@ -134,8 +132,7 @@ with debug support. If you prefer CLion (I do) then follow to the next section.
 > [Getting Started with Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
 > user guide.
 
-The user guide skips the final step of hooking into OpenOCD via GDB in CLion allowing you 
-to hit run and debug from directly in the IDE and to set breakpoints and step through your code.
+The user guide skips the final step of hooking into OpenOCD via GDB in CLion, allowing you to hit run and debug directly in the IDE, set breakpoints, and step through your code.
 
 1. Open the edit configs window
 
@@ -147,11 +144,11 @@ to hit run and debug from directly in the IDE and to set breakpoints and step th
 
 3. Select your target and executable and use the following settings:
    
-   | Setting              | Value                                                    |
-   |----------------------|----------------------------------------------------------|
-   | 'target remote' args | `tcp:localhost:3333`                                     |
-   | GDB Server           | `/usr/local/bin/openocd`<sup>1</sup>                     |
-   | GDB Server args      | `-f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl` |
+   | Setting                | Value                                                                            |
+   |------------------------|----------------------------------------------------------------------------------|
+   | 'target remote' args   | `tcp:localhost:3333`                                                             |
+   | GDB Server<sup>1</sup> | `/usr/local/bin/openocd`                                                         |
+   | GDB Server args        | `-f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -s tcl` |
 
    <sup>1</sup> Location where OpenOCD binary was installed
     
@@ -165,20 +162,23 @@ to hit run and debug from directly in the IDE and to set breakpoints and step th
 
 ## Gotchas
 
-### Open OCD unable to access Pico Probe on Linux
+### Open OCD unable to access Debug Probe on Linux
 
-The port used to access pico probe is r/w to root only. A UDev rule is required to
-change the ownership of the port.
+The port used to access the debug probe is r/w to root only. A UDev rule is required to change the port's ownership.
 
 Place the following into the file: `/etc/udev/rules.d/60-openocd.rules`
 ```
 # Raspberry Pi Picoprobe
 ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0004", MODE="660", GROUP="plugdev", TAG+="uaccess"
+# Raspberry PI Debugprob (CMSIS-DAP)
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000c", MODE="0660", GROUP="plugdev", TAG+="uaccess"
 ```
 
-Reconnect the dev board to update permissions. 
+Reload the rules with: `sudo udevadm control --reload-rules`
 
-Next add your user to the `plugdev` group with:
+Next, reconnect the dev board to update permissions. 
+
+And finally, add your user to the `plugdev` group with:
 
 > Assuming your distribution uses sudo:
 > 
